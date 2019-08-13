@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="profileForm" (ngSubmit)="edit_user()">
+      <ion-item>
+        <ion-label position='floating'>Email</ion-label>
+        <ion-input type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='floating'>Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='floating'>Surname</ion-label>
+        <ion-input type="text" formControlName="surname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='floating'>Address</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='floating'>Account</ion-label>
+        <ion-input type="number" formControlName="account"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='floating'>Cell Number</ion-label>
+        <ion-input type="tel" formControlName="contact"></ion-input>
+      </ion-item>
+
+      <br />
+      <div padding>
+        <ion-button type="submit" [disabled]="!profileForm.valid || !profileForm.dirty">Update</ion-button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

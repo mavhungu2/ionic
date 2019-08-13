@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-list>
+    <ion-card padding *ngFor="let service of services">
+      <h2><b>{{service["state"]["Name"]}}</b></h2>
+      <p>{{service["state"]["Info"]['type']}}</p>
+      <br />
+      <p><b>Ports:</b> {{service['containerPort']}}</p>
+      <p><b>Cluster IP:</b>{{service['state']['Info']['clusterIP']}}</p>
+      <p><b>Created:</b> {{service["state"]["Created"]}}</p>
+     
+      <ion-button item-end icon-start outline (click)="editservice(edit_service_prompt['state']['Name'], service['state']['Name'], service['containerPort'])"><ion-icon name="create"></ion-icon>Edit</ion-button>
+      <!--<button ion-button item-end icon-start outline><ion-icon name="analytics" (click)="deplymentStats(service['Name'])"></ion-icon>Stats</button>-->
+      <ion-button item-end icon-start outline color="danger" (click)="delete_service_prompt(service['state']['Name'])"><ion-icon name="trash"></ion-icon>Delete</ion-button>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-list>
+    <ion-card padding *ngFor="let deployment of deployments">
+      <h2><b>{{deployment["state"]["Name"]}}</b></h2>
+      <p>{{deployment["state"]["Status"]['conditions'][0]['type']}}</p>
+      <br />
+      <p><b>Replicas:</b>{{deployment["state"]["Status"]['replicas']}} | {{deployment["state"]["Status"]['conditions'][0]['reason']}}</p>
+      <p><b>Container Port:</b> {{deployment['containerPort']}}</p>
+      <p><b>Created:</b> {{deployment["state"]["Created"]}}</p>
+      <p><b>Last Update:</b> {{deployment["state"]["Status"]['conditions'][0]['lastUpdateTime']}}</p>
+
+      <ion-button item-end icon-start outline (click)="editDeployment(deployment['state']['Name'], deployment['state']['Name'], deployment['containerPort'])"><ion-icon name="create"></ion-icon>Edit</ion-button>
+      <!--<button ion-button item-end icon-start outline><ion-icon name="analytics" (click)="deplymentStats(deployment['Name'])"></ion-icon>Stats</button>-->
+      <ion-button item-end icon-start outline color="danger" (click)="deleteDeployment(deployment['state']['Name'])"><ion-icon name="trash"></ion-icon>Delete</ion-button>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Deploy Options</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          Details
+        </ion-card-title>
+          <mat-vertical-stepper linear="false" #stepper>
+        
+            <mat-step [stepControl]="userForm">
+              <form [formGroup]="deployForm" (ngSubmit)="deployCompose()">
+                <ng-template matStepLabel>App Specifications</ng-template>
+                <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Storage</ion-label>
+                    <ion-input type="text" formControlName="storage"></ion-input>
+                </ion-item>
+              </form>
+            </mat-step>
+          
+            <mat-step [stepControl]="userForm" label="Services RAM CPU">
+                <form [formGroup]="deployForm">
+                  <ion-item *ngFor="let subImage of subImages">
+                    <ion-label position="floating">{{subImage['name']}}</ion-label>
+                    <ion-input type="text" formControlName="{{subImage['name']}}"></ion-input>
+                  </ion-item>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="userForm" label="Services Bandwidth">
+                <form [formGroup]="deployForm">
+                  <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            
+            <mat-step label="Confirm Deployment">
+              Confirm Deployment By Typing In Your Password
+              <form [formGroup]="deployForm">
+                <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <ion-button type="submit" (click)="deployCompose()" [disabled]="">Submit</ion-button>
+                  </div>
+              </form>
+            </mat-step>
+          
+          </mat-vertical-stepper>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

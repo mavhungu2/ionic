@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Transactions
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <ion-card>
+        <ion-card-content>
+        <ion-card-title>
+          Balance
+        </ion-card-title>
+        <div padding>
+          <h1 id="user_balance">{{balance}} Coins</h1>
+          <ion-button (click)="buyCoins()">Buy coins</ion-button>
+        </div>
+      </ion-card-content>
+  
+  
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+        <ion-card-title>
+          Send Coins
+        </ion-card-title>
+        <form [formGroup]="transferCoinsForm" (ngSubmit)="transferCoins()">
+          <ion-item>
+            <ion-label position='floating'>Recipient Email</ion-label>
+            <ion-input type="email" formControlName="receiver_email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Amount</ion-label>
+            <ion-input type="number" min='0' max='{{balance}}' formControlName="qty"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Your Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div padding>
+            <ion-button type="submit" [disabled]="!transferCoinsForm.valid">Submit</ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  
+  </ion-content>

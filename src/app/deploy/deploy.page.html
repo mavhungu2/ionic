@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Deploy App</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar animated (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-card *ngFor="let image of images">
+    <ion-card-content>
+      <ion-card-title>{{image['Name']}}</ion-card-title>
+      <h3>Price: {{image['price']}} Coins</h3>
+      <p>{{image['description']}}</p>
+      <br />
+      <p>Developer: {{image['Developer']}}</p>
+      <ion-button size="small" (click)="deployApp(image)">Deploy</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

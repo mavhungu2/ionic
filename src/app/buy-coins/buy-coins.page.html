@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buy RIOT Coins</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-card-content>
+    <ion-card-title>
+      Card Details
+    </ion-card-title>
+    <form [formGroup]="buyCoinsForm" (ngSubmit)="buyCoins()">
+        <ion-item>
+          <ion-label position='floating'>Card Number</ion-label>
+          <ion-input type="number" formControlName="cardNumber"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Expiration Date</ion-label>
+          <ion-datetime displayFormat="MM/YY" min="{{todaysDate}}" max="{{futureDate}}" formControlName="expiryDate"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>CVC Code</ion-label>
+          <ion-input type="number" formControlName="cvc"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Amount</ion-label>
+          <ion-input type="number" formControlName="qty"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Your Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div padding>
+          <ion-button type="submit" [disabled]="!buyCoinsForm.valid">Submit</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+    </ion-card>
+</ion-content>

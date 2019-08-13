@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item [routerDirection]="'forward'" [routerLink]="['/edit-profile']">
+        <ion-icon name="person"  slot='start'></ion-icon>
+        <ion-label>
+          Edit Profile
+        </ion-label>
+      </ion-item>
+      <ion-item [routerDirection]="'forward'" [routerLink]="['/data-usage']">
+        <ion-icon name="analytics"  slot='start'></ion-icon>
+        <ion-label>
+          Data Usage
+        </ion-label>
+      </ion-item>
+      <ion-item [routerDirection]="'forward'" [routerLink]="['/my-base-stations']">
+        <ion-icon name="pin"  slot='start'></ion-icon>
+        <ion-label>My Base Stations</ion-label>
+      </ion-item>
+      <ion-item [routerDirection]="'forward'" [routerLink]="['/change-password']">
+        <ion-icon name="key"  slot='start'></ion-icon>
+        <ion-label>
+          Change Password
+        </ion-label>
+      </ion-item>
+      <ion-item [routerDirection]="'root'" [routerLink]="['/login']" (click)="logOut()">
+        <ion-icon name="exit"  slot='start'></ion-icon>
+        <ion-label>
+          Log Out
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>

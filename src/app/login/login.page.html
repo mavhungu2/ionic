@@ -1,0 +1,79 @@
+<ion-content>
+  <img style="margin: auto;display: block;" height="60px" src="assets/imgs/riot-logo-mono-2.png" />
+
+  <ion-card>
+    <ion-card-content>           
+     <ion-segment [(ngModel)]="forms">
+        <ion-segment-button value="old">
+          Log In
+        </ion-segment-button>
+        <ion-segment-button value="new">
+          Register
+        </ion-segment-button>
+      </ion-segment>
+      <div [ngSwitch]="forms">
+        <form *ngSwitchCase="'new'" [formGroup]="register" (ngSubmit)="register_user()">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" formControlName="email"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Surname</ion-label>
+            <ion-input type="text" formControlName="surname"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-textarea formControlName="address"></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Account</ion-label>
+            <ion-input type="number" formControlName="account"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Cell Number</ion-label>
+            <ion-input type="tel" formControlName="contact"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+
+          <br />
+          <div padding>
+            <ion-button type="submit" [disabled]="!register.valid">Register</ion-button>
+          </div>
+        </form>
+
+        <form *ngSwitchCase="'old'" [formGroup]="login" (ngSubmit)="validateData()">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" formControlName="username"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+
+          <br />
+          <div padding>
+            <ion-button type="submit" [disabled]="!login.valid">Sign In</ion-button>
+          </div>
+        </form>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

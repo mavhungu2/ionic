@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>App Specifications</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+ 
+      <form [formGroup]="deployAppForm" (ngSubmit)="presentPrompt()">
+        <ion-card>
+          <ion-card-content>
+          <ion-card-title>
+            Details
+          </ion-card-title>
+          <ion-item>
+            <ion-label position='floating'>Deployment Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Package</ion-label>
+            <ion-select formControlName="package" interface="action-sheet" (ionChange)='getCost()'>
+              <ion-select-option *ngFor="let package of packages"  [value]="{id: package['id'], price: package['price']}">Price: {{package['price']}} Coins, Storage:{{package['storage']}}, CPU: {{package['cpu']}}, RAM: {{package['ram']}}B</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Bandwidth</ion-label>
+            <ion-select (ionChange)='getCost()' formControlName="data">
+              <ion-select-option value="50">50MB</ion-select-option>
+              <ion-select-option value="100">100MB</ion-select-option>
+              <ion-select-option value="150">150MB</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Port</ion-label>
+            <ion-input type="number" formControlName="port"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Replicas</ion-label>
+            <ion-input type="number" formControlName="replicas"></ion-input>
+          </ion-item>
+        </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+          <ion-card-title>
+            Costs
+          </ion-card-title>
+          <ion-item>
+            <ion-label>Base Station Rate:  {{rate}} Coins/MB</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><b>Bandwidth Cost: {{bandwidth}}</b></ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Image Price: {{image_price}} Coins</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><b>Total: {{total}} Coins</b></ion-label>
+          </ion-item>
+          <div padding>
+            <ion-button block type="submit" [disabled]="!deployAppForm.valid">Deploy</ion-button>
+          </div>
+        </ion-card-content>
+        </ion-card>
+      </form>
+    
+    
+    </ion-content>

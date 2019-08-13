@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Data Usage</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item ion-item *ngFor="let usage of dataUsage">
+        <ion-label>
+          <ion-text>
+            <h2><b>{{usage['device_mac_address']}}</b></h2><br>
+          </ion-text>
+          <ion-text>
+            <h3><b>Balance:</b> {{usage['balance']}}/{{usage['balance']-usage['usage']}} MB</h3>
+          </ion-text>
+          <ion-text>
+              <h3>Base Station: {{usage['base_station_mac_address']}}</h3>
+          </ion-text>
+          <ion-text>
+              <h3>Rate: {{usage['rate']}} Coin/MB</h3>
+          </ion-text>
+        </ion-label>
+        <ion-button size="default" color="primary" (click)="present_prompt(usage['device_mac_address'], usage['base_station_mac_address'], usage['rate'])">
+          Add Data
+          <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
